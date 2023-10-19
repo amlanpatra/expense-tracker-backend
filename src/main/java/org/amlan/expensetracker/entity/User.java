@@ -1,5 +1,6 @@
 package org.amlan.expensetracker.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -21,15 +22,16 @@ public class User {
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 //    @JsonManagedReference
 //    @JoinTable(name = "user_group", joinColumns = @JoinColumn(name = "groupId"), inverseJoinColumns = @JoinColumn(name = "userId"))
+    @JsonIgnore
     private List<Group> groups;
 
-
-    @Override
-    public String toString() {
-        String groupIds = groups.stream().map(x -> x.getGroupId().toString()).reduce((a, b) -> (a + " " + b)).orElse("Empty");
-        return "User{" + userId +
-                ", '" + userName + '\'' +
-                ", groups=[" + groupIds +
-                "]}";
-    }
+//
+//    @Override
+//    public String toString() {
+//        String groupIds = groups.stream().map(x -> x.getGroupId().toString()).reduce((a, b) -> (a + " " + b)).orElse("Empty");
+//        return "User{" + userId +
+//                ", '" + userName + '\'' +
+//                ", groups=[" + groupIds +
+//                "]}";
+//    }
 }
