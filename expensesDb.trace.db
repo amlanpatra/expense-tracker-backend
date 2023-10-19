@@ -3030,3 +3030,24 @@ select * from groups_users [42102-196]
 2023-10-18 23:28:41 jdbc[3]: exception
 org.h2.jdbc.JdbcSQLException: Table "GROUPS_USERS" not found; SQL statement:
 select * from groups_users [42102-196]
+2023-10-19 12:20:31 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "GROUPS_USERS" not found; SQL statement:
+drop table groups_users [42102-196]
+2023-10-19 12:20:42 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "GROUPS" not found; SQL statement:
+drop table groups [42102-196]
+2023-10-19 12:20:42 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "GROUPS_USERS" not found; SQL statement:
+drop table groups_users [42102-196]
+2023-10-19 12:20:42 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "PAYMENT_BLOCKS" not found; SQL statement:
+drop table  payment_blocks [42102-196]
+2023-10-19 12:20:42 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "TRANSACTIONS" not found; SQL statement:
+drop table  transactions [42102-196]
+2023-10-19 12:20:42 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "USERS" not found; SQL statement:
+drop table  users [42102-196]
+2023-10-19 12:20:42 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "USERS_GROUPS" not found; SQL statement:
+drop table users_groups [42102-196]

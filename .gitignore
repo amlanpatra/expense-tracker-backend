@@ -4,6 +4,10 @@ target/
 !**/src/main/**/target/
 !**/src/test/**/target/
 
+#localDb
+expensesDb.mv.db
+expensesDb.trace.db
+
 ### STS ###
 .apt_generated
 .classpath
