@@ -1,19 +1,19 @@
 package org.amlan.expensetracker.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Objects;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
 @Table(name = "Groups")
-public class Group {
+public class Group implements Comparable<Group> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -22,32 +22,33 @@ public class Group {
     @ManyToOne
     private User admin;
 
-    @ManyToMany(mappedBy = "groups")//, cascade = CascadeType.ALL)
-//    @JsonManagedReference
-    @JsonIgnore
+    @ManyToMany(mappedBy = "groups")//, cascade = CascadeType.ALL)//, fetch = FetchType.EAGER)
+//    @JsonIgnore
     private List<User> users;
 
-    @OneToMany(mappedBy = "paymentGroup", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-//    @JsonManagedReference
-    @JsonIgnore
-    private List<Transaction> transactions;
+    @OneToMany(mappedBy = "group")
+    private List<PaymentBlock> payments;
 
     private String groupName;
     private String groupDescription;
 
+    @Override
+    public String toString() {
+        return org.amlan.expensetracker.utilities.JsonMapper.asJson(this);
+    }
 
-//    @Override
-//    public String toString() {
-//        String transactionIds = transactions.stream().map(x -> x.getTransactionId().toString()).reduce((a, b) -> (a + " " + b)).orElse("Empty");
-//        String userIds = users.stream().map(x -> x.getUserId().toString()).reduce((a, b) -> (a + " " + b)).orElse("Empty");
-//
-//        return "Group{" +
-//                "groupId=" + groupId +
-//                ", admin=" + admin +
-//                ", users=[" + userIds +
-//                "], transactions=[" + transactionIds +
-//                "], groupName='" + groupName + '\'' +
-//                ", groupDescription='" + groupDescription + '\'' +
-//                '}';
-//    }
+    @Override
+    public int compareTo(Group group) {
+        return (int) (this.getGroupId() - group.getGroupId());
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o instanceof Group) {
+            Group g = (Group) o;
+            return Objects.equals(g.getGroupId(), this.getGroupId());
+        }
+        return false;
+    }
+
 }
