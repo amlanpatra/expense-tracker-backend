@@ -56,12 +56,20 @@ public class UserController {
 
 
     // TODO: Add feature to mark transaction for a single receiver use as settled
+
+    /**
+     *
+     * @param groupId   id of the current group
+     * @param userId    current logged in user/creator user who will settle for himself
+     * @param forUserIds userIds of user against whom transaction to settle
+     * @return
+     */
     @RequestMapping("/markTransactionAsSettled") // when an user marks a transaction as settled
-    public Object markTransactionAsSettled(@RequestParam("groupId") Long groupId, @RequestParam("userId") Long userId) {
+    public Object markTransactionAsSettled(@RequestParam("groupId") Long groupId, @RequestParam("userId") Long userId, @RequestParam("forUserIds") List<Long> forUserIds) {
         // userId of logged in user
         // groupId of any of selected group
         // receiverUserId of the person whom current user needs to send money and has settled
-        return userService.settleTransactionForUserInGroup(groupId, userId);
+        return userService.settleTransactionForUserInGroup(groupId, userId, forUserIds);
     }
 
     @GetMapping("/getGroupNames/{userId}")

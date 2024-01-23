@@ -61,6 +61,8 @@ public class GroupController {
         // the userID is of the user who makes the request, so any user can make any other users request
         // the group id in which the transaction is being done
         // list of all paymentBlocks
+//        TODO : If it returns null, it means user is not in group or group does not exist
+//        In that case return a bad request
         return groupService.addTransaction(groupId, creatorUserId, payments);
 //        String s = payments.stream().map(x -> x.toString()).reduce("", (a, b) -> a + " " + b);
 //        return "working " + s;

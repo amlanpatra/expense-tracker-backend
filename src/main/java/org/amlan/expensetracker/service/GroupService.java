@@ -6,6 +6,7 @@ import org.amlan.expensetracker.entity.User;
 import org.amlan.expensetracker.repository.GroupRepository;
 import org.amlan.expensetracker.repository.PaymentBlockRepository;
 import org.amlan.expensetracker.repository.UserRepository;
+import org.amlan.expensetracker.utilities.CONSTANT;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -93,6 +94,7 @@ public class GroupService {
                 if (currentGroup.getUsers().contains(x.getPayeeUser()) && currentGroup.getUsers().contains(x.getReceiverUser())) {
                     x.setCreatorUser(creatorUser);
                     x.setPaymentTime(LocalDateTime.now());
+                    x.setPaymentType(CONSTANT.PAYMENT_TYPE.PAYING.getValue());
                 } else {
                     System.out.println("\n\n\n\nUsers outside group\n\n\n\n");
                 }
@@ -129,8 +131,6 @@ public class GroupService {
             return false;
         }
     }
-
-
 
 
 }
